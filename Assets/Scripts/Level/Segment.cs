@@ -1,48 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using Level.Data;
 using UnityEngine;
 using Util;
 
 namespace Level {
 	public class Segment : MonoBehaviour {
-		[Serializable]
-		public class WallManager {
-			public Wall North, South, East, West;
-
-			public Wall GetWall(SpawnPosition pos) {
-				switch (pos) {
-					case SpawnPosition.North:
-						return North;
-					case SpawnPosition.East:
-						return East;
-					case SpawnPosition.South:
-						return South;
-					case SpawnPosition.West:
-						return West;
-					default:
-						return null;
-				}
-			}
-
-			public void Init() {
-				foreach (SpawnPosition p in Enum.GetValues(typeof(SpawnPosition))) {
-					GetWall(p)?.Init();
-				}
-			}
-		}
+		
+		[SerializeField] public WallManager Walls;
 
 
 		public Transform start, end;
-		[SerializeField] public WallManager Walls;
 
-		public void Init() {
-			Walls.Init();
+		public Segment previous, next;
+		
+		public void Init(ref Queue<Segment> backTrackSegments) {
+			Walls.Init(ref backTrackSegments);
 		}
 
 		public void ConnectSegmentTo(Segment s) {
 			Transform segmentTrans = s.transform;
 			Vector3 displacement = segmentTrans.position - s.start.position;
 			segmentTrans.position = end.position + displacement;
-			Init();
+
+			next = s;
+			s.previous = this;
+			
 		}
 
 		public static Segment Spawn(GameObject segmentPrefab, Segment lastSegment) {
