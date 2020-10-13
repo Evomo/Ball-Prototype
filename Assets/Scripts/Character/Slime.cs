@@ -33,7 +33,6 @@ namespace Character {
 		public bool IsGrounded {
 			get {
 				RaycastHit hit;
-				// Does the ray intersect any objects excluding the player layer
 				if (Physics.Raycast(transform.position, GravityVector(), out hit, Mathf.Infinity)) {
 					if (hit.distance < minStickDistance) {
 						return true;
@@ -74,11 +73,11 @@ namespace Character {
 		private void Update() {
 			Move();
 
-			// Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, GravityVector() * 10),
-			// 	Color.red);
-			// Debug.DrawLine(transform.position,
-			// 	transform.position + -Vector3.Cross(Vector3.right, GravityVector()) * 10,
-			// 	Color.blue);
+			Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, GravityVector() * 10),
+				Color.red);
+			Debug.DrawLine(transform.position,
+				transform.position + -Vector3.Cross(Vector3.right, GravityVector()) * 10,
+				Color.blue);
 		}
 
 //Calculate orthogonal vectors to the gravity and forward to get an "error" of how off-center the slime is 
