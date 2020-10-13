@@ -39,18 +39,19 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
     "com.evomo.motionai": "1.2.0",
-    "com.dbrizov.naughtyattributes": "2.0.7"
+    "com.dbrizov.naughtyattributes": "2.0.7",
+    "com.beans.deform": "1.1.0"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
-        "com.solidalloy.type.references",
-
-        "com.evomo.motionai",
+        "com.beans.deform",
         "com.dbrizov.naughtyattributes",
-        "com.openupm"
+        "com.evomo.motionai",
+        "com.openupm",
+        "com.solidalloy.type.references"
       ]
     }
   ]

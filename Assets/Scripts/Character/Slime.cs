@@ -14,7 +14,7 @@ namespace Character {
 		[Range(1, 20)] public float gravMultiplier;
 		private Vector3 _moveVector;
 
-		private Vector3 errorDrift;
+		private Vector3 _errorDrift, _gravityVec;
 
 		private Vector3 Direction =>
 			Vector3.right; //(_currentSegment.next.transform.position - transform.position).normalized;
@@ -47,16 +47,23 @@ namespace Character {
 		private Vector3 GravityVector() {
 			switch (currGravityDirection) {
 				case TunnelDirections.NORTH:
-					return Vector3.up * gravMultiplier;
+					_gravityVec = Vector3.up;
+					break;
 				case TunnelDirections.SOUTH:
-					return Vector3.down * gravMultiplier;
+					_gravityVec = Vector3.down;
+					break;
 				case TunnelDirections.EAST:
-					return Vector3.back * gravMultiplier;
+					_gravityVec = Vector3.back;
+					break;
 				case TunnelDirections.WEST:
-					return Vector3.forward * gravMultiplier;
+					_gravityVec = Vector3.forward;
+					break;
 				default:
-					return Vector3.up;
+					_gravityVec = Vector3.up;
+					break;
 			}
+
+			return _gravityVec * gravMultiplier;
 		}
 
 		public void Start() {
@@ -98,12 +105,13 @@ namespace Character {
 			}
 
 
-			if (CenterError(ref errorDrift) > driftMargin) {
-				_moveVector += errorDrift;
+			float error = CenterError(ref _errorDrift) ;
+			if (error > driftMargin) {
+				_moveVector += _errorDrift * (gravMultiplier * error);
 			}
 
 
-			Debug.DrawLine(transform.position, transform.position + errorDrift, Color.magenta);
+			Debug.DrawLine(transform.position, transform.position + _errorDrift, Color.magenta);
 			Debug.DrawLine(transform.position, transform.position + GravityVector() * 10, Color.green);
 			controller.Move(_moveVector.normalized * (speed * Time.deltaTime));
 		}
