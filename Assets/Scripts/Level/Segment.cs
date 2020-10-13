@@ -41,8 +41,26 @@ namespace Level {
 		private void OnTriggerEnter(Collider other) {
 			Slime slime = other.gameObject.GetComponent<Slime>();
 			if (slime != null) {
-				slime.CurrentSegment= this;
+				slime.CurrentSegment = this;
 			}
+		}
+
+
+		public void RecyclePrevious() {
+			// if (previous != null) {
+			// 	int depth = 0;
+			//
+			// 	Segment curr = previous;
+			// 	while (curr.previous != null) {
+			// 		curr = curr.previous;
+			// 		depth++;
+			// 	}
+			//
+			// 	if (depth >= 3) {
+			// 		SimplePool.Despawn(curr.gameObject);
+			// 		LevelGenerator.Instance.NextSegment();
+			// 	}
+			// }
 		}
 	}
 }

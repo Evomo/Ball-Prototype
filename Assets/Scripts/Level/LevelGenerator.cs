@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Level.Data;
+using MotionAI.Core.Util;
 using NaughtyAttributes;
 using UnityEngine;
 
 namespace Level {
 	[RequireComponent(typeof(PathGenerator))]
-	public class LevelGenerator : MonoBehaviour {
+	public class LevelGenerator : Singleton<LevelGenerator> {
 		public GameObject segmentPrefab;
 		public Segment currentSegment;
 
@@ -20,7 +21,7 @@ namespace Level {
 			_backTrackSegments = new Queue<Segment>();
 
 
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 100; i++) {
 				NextSegment();
 			}
 		}

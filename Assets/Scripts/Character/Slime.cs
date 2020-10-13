@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using Level;
 using UnityEngine;
 using Util;
@@ -11,25 +9,32 @@ namespace Character {
 		private Segment _currentSegment;
 
 		[Range(0, 1)] public float minStickDistance;
+		[Range(0, 1)] public float driftMargin;
 		[Range(1, 20)] public float speed;
 		[Range(1, 20)] public float gravMultiplier;
 		private Vector3 _moveVector;
 
-		private Vector3 Direction => (_currentSegment.next.transform.position - transform.position).normalized;
+		private Vector3 errorDrift;
+
+		private Vector3 Direction =>
+			Vector3.right; //(_currentSegment.next.transform.position - transform.position).normalized;
 
 		public TunnelDirections currGravityDirection;
 		private RaycastHit _rightHit, _leftHit;
 
 		public Segment CurrentSegment {
 			get => _currentSegment;
-			set { _currentSegment = value; }
+			set {
+				_currentSegment = value;
+				_currentSegment.RecyclePrevious();
+			}
 		}
 
 		public bool IsGrounded {
 			get {
 				RaycastHit hit;
 				// Does the ray intersect any objects excluding the player layer
-				if (Physics.Raycast(transform.position, StickDirection(), out hit, Mathf.Infinity)) {
+				if (Physics.Raycast(transform.position, GravityVector(), out hit, Mathf.Infinity)) {
 					if (hit.distance < minStickDistance) {
 						return true;
 					}
@@ -39,7 +44,7 @@ namespace Character {
 			}
 		}
 
-		private Vector3 StickDirection() {
+		private Vector3 GravityVector() {
 			switch (currGravityDirection) {
 				case TunnelDirections.NORTH:
 					return Vector3.up * gravMultiplier;
@@ -60,25 +65,28 @@ namespace Character {
 
 
 		private void Update() {
-			Debug.Log(IsGrounded);
 			Move();
 
-			Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, StickDirection() * 10),
-				Color.red);
-			Debug.DrawLine(transform.position,
-				transform.position + -Vector3.Cross(Vector3.right, StickDirection()) * 10,
-				Color.blue);
+			// Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, GravityVector() * 10),
+			// 	Color.red);
+			// Debug.DrawLine(transform.position,
+			// 	transform.position + -Vector3.Cross(Vector3.right, GravityVector()) * 10,
+			// 	Color.blue);
 		}
 
 //Calculate orthogonal vectors to the gravity and forward to get an "error" of how off-center the slime is 
-		private Vector3 CenterError() {
-			Vector3 crossRight = Vector3.Cross(Vector3.right, StickDirection()).normalized;
+		private float CenterError(ref Vector3 vec) {
+			Vector3 crossRight = Vector3.Cross(Vector3.right, GravityVector()).normalized;
 			Vector3 crossLeft = -crossRight;
 			// Does the ray intersect any objects excluding the player layer
 			Vector3 position = transform.position;
 			Physics.Raycast(position, crossRight, out _rightHit, Mathf.Infinity);
 			Physics.Raycast(position, crossLeft, out _leftHit, Mathf.Infinity);
-			return ((crossRight * _rightHit.distance) + (crossLeft * _leftHit.distance));
+			crossRight = crossRight * _rightHit.distance;
+			crossLeft = crossLeft * _leftHit.distance;
+			vec = crossLeft + crossRight;
+
+			return vec.magnitude / (crossLeft.magnitude + crossRight.magnitude);
 		}
 
 
@@ -86,13 +94,17 @@ namespace Character {
 			_moveVector = Direction;
 			// _moveVector = Vector3.zero;
 			if (!IsGrounded) {
-				_moveVector += StickDirection();
-				_moveVector += CenterError();
+				_moveVector += GravityVector();
 			}
 
 
-			Debug.DrawLine(transform.position, transform.position + CenterError(), Color.magenta);
-			Debug.DrawLine(transform.position, transform.position + _moveVector * 10);
+			if (CenterError(ref errorDrift) > driftMargin) {
+				_moveVector += errorDrift;
+			}
+
+
+			Debug.DrawLine(transform.position, transform.position + errorDrift, Color.magenta);
+			Debug.DrawLine(transform.position, transform.position + GravityVector() * 10, Color.green);
 			controller.Move(_moveVector.normalized * (speed * Time.deltaTime));
 		}
 	}
