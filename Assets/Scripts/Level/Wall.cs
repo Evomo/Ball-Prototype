@@ -1,40 +1,51 @@
-﻿using UnityEngine;
+﻿using Level.Data;
+using UnityEngine;
 
 namespace Level {
 	public class Wall : MonoBehaviour {
-		private MeshRenderer _meshRenderer;
+		[SerializeField] private MeshRenderer _meshRenderer;
+		[SerializeField] private WallType currType;
 
-		[SerializeField] private bool hasBoost;
 
-		public bool HasBoost {
-			get => hasBoost;
+		private WallData data;
+
+		public WallType CurrType {
+			get => data.wallType;
 			set {
-				SetMaterial();
-
-				hasBoost = value;
+				MaterialFactory();
+				data.wallType = value;
 			}
 		}
 
 		public Material standardMaterial, boostMaterial;
 
 
-		public void SetMaterial() {
-			Debug.Log("hjashjkkjasd");
-			if (HasBoost) {
+		public void MaterialFactory() {
+			if (_meshRenderer == null) return;
+			switch (CurrType) {
+			case WallType.BOOST:
 				_meshRenderer.material = boostMaterial;
-			}
-			else {
+
+				break;
+			default:
 				_meshRenderer.material = standardMaterial;
+				break;
 			}
 		}
 
-		public void Init() {
-			hasBoost = Random.Range(0, 10) > 5;
-			SetMaterial();
+		public void Init(WallData data) {
+			this.data = data;
+			MaterialFactory();
 		}
 
-		void Start() {
+
+
+		void Awake() {
 			_meshRenderer = GetComponent<MeshRenderer>();
+
+
+			//TODO DEBUG
+			CurrType = Random.Range(0, 10) > 5 ? WallType.NORMAL : WallType.BOOST;
 		}
 	}
 }
