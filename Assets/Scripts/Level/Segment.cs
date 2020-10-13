@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Character;
 using Level.Data;
 using UnityEngine;
 using Util;
 
 namespace Level {
 	public class Segment : MonoBehaviour {
-		
 		[SerializeField] public WallManager Walls;
 
 
 		public Transform start, end;
 
 		public Segment previous, next;
-		
+
 		public void Init(ref Queue<Segment> backTrackSegments) {
 			Walls.Init(ref backTrackSegments);
 		}
@@ -25,7 +25,6 @@ namespace Level {
 
 			next = s;
 			s.previous = this;
-			
 		}
 
 		public static Segment Spawn(GameObject segmentPrefab, Segment lastSegment) {
@@ -37,6 +36,13 @@ namespace Level {
 			}
 
 			return s;
+		}
+
+		private void OnTriggerEnter(Collider other) {
+			Slime slime = other.gameObject.GetComponent<Slime>();
+			if (slime != null) {
+				slime.CurrentSegment= this;
+			}
 		}
 	}
 }

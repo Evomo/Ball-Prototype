@@ -7,13 +7,14 @@ namespace Level {
 		[SerializeField] private WallType currType;
 
 
-		private WallData data;
+		[SerializeField]
+		private WallData _data;
 
 		public WallType CurrType {
-			get => data.wallType;
+			get => _data.wallType;
 			set {
 				MaterialFactory();
-				data.wallType = value;
+				_data.wallType = value;
 			}
 		}
 
@@ -34,7 +35,7 @@ namespace Level {
 		}
 
 		public void Init(WallData data) {
-			this.data = data;
+			this._data = data;
 			MaterialFactory();
 		}
 

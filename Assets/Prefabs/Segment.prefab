@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
-  _wallType: 0
+  currType: 0
+  _data:
+    wallType: 0
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &325811593937176463
@@ -158,7 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
-  _wallType: 0
+  currType: 0
+  _data:
+    wallType: 0
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &3923518624885919396
@@ -262,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8324150848400434430}
   - component: {fileID: 322444547}
+  - component: {fileID: 8370030387144315501}
   m_Layer: 0
   m_Name: Segment
   m_TagString: Untagged
@@ -300,15 +305,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f14595b7297aeb4db62fa3cf5640155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Walls:
-    North: {fileID: 4671197659922329150}
-    South: {fileID: 6969148956856080827}
-    East: {fileID: 3916784194547752740}
-    West: {fileID: 3226910107033115063}
   start: {fileID: 1660041661547486670}
   end: {fileID: 331237781859064884}
   previous: {fileID: 0}
   next: {fileID: 0}
+--- !u!65 &8370030387144315501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3687419642464922015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.97, y: 9.917593, z: 9.85}
+  m_Center: {x: -4.05, y: 0, z: 0}
 --- !u!1 &3932779316763310383
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
-  _wallType: 0
+  currType: 0
+  _data:
+    wallType: 0
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &7398955894292309396
@@ -529,7 +544,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
-  _wallType: 0
+  currType: 0
+  _data:
+    wallType: 0
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &111338947473837179

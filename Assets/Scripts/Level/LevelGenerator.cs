@@ -10,15 +10,19 @@ namespace Level {
 		public GameObject segmentPrefab;
 		public Segment currentSegment;
 
-		public PathGenerator path; 
+		public PathGenerator path;
 
-		[SerializeField]
-		private Queue<Segment> _backTrackSegments;
+		[SerializeField] private Queue<Segment> _backTrackSegments;
 		[Range(1, 5)] public int backTrackCount = 1;
 
-		private void Start() {
+		private void Awake() {
 			path = GetComponent<PathGenerator>();
 			_backTrackSegments = new Queue<Segment>();
+
+
+			for (int i = 0; i < 20; i++) {
+				NextSegment();
+			}
 		}
 
 		[Button]
@@ -31,7 +35,11 @@ namespace Level {
 
 			_backTrackSegments.Enqueue(s);
 
-			s.Init(ref _backTrackSegments);
+			if (currentSegment != null) {
+				currentSegment.ConnectSegmentTo(s);
+			}
+
+			// s.Init(ref _backTrackSegments);
 			currentSegment = s;
 		}
 	}
