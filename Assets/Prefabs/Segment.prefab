@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ffbf7b054f0f8458eb3393965e50c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 0}
+  _meshRenderer: {fileID: 377640616045123103}
   currType: 0
   _data:
     wallType: 0
@@ -78,7 +78,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ffbf7b054f0f8458eb3393965e50c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 0}
+  _meshRenderer: {fileID: 5510087491452820468}
   currType: 0
   _data:
     wallType: 0
@@ -191,7 +191,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,6 +305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f14595b7297aeb4db62fa3cf5640155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Walls:
+    North:
+      wallType: 0
+    South:
+      wallType: 0
+    East:
+      wallType: 0
+    West:
+      wallType: 0
   start: {fileID: 1660041661547486670}
   end: {fileID: 331237781859064884}
   previous: {fileID: 0}
@@ -368,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ffbf7b054f0f8458eb3393965e50c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 0}
+  _meshRenderer: {fileID: 1767864454958616201}
   currType: 0
   _data:
     wallType: 0
@@ -400,7 +409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -543,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ffbf7b054f0f8458eb3393965e50c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 0}
+  _meshRenderer: {fileID: 5161783705397561836}
   currType: 0
   _data:
     wallType: 0
@@ -575,7 +584,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

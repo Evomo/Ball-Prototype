@@ -7,14 +7,19 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Level.Components {
-	public class PathGenerator : MonoBehaviour {
+	public class MarkovGenerator : MonoBehaviour {
 		[SerializeField] private List<SegmentAsset> markovSegments;
 
+		private Segment lastSegment;
 		private StringMarkov trainer;
 
 		private bool _isTrained;
 
-		[Button]
+		private void Start() {
+			PopulateSegments();
+			TrainMarkov();
+		}
+
 		private void TrainMarkov() {
 			if (trainer == null) {
 				trainer = new StringMarkov();
@@ -32,32 +37,28 @@ namespace Level.Components {
 			else {
 				Debug.LogError("Segment Assets cannot be empty!");
 			}
-
-
 		}
 
-		[Button()]
-		private HumbleSegment NextSegment() {
+		public IEnumerable<HumbleSegment> NextSegmentGenerator() {
 			if (!_isTrained) {
 				TrainMarkov();
 			}
-			
-	
+
 
 			string next = trainer.Walk().FirstOrDefault();
+			// return HumbleSegment.CreateFromString(next);
 
-			Debug.Log(next);
+			IEnumerable<HumbleSegment> segmentsToSpawn = next?
+				.Split()
+				.Where(s => !string.IsNullOrEmpty(s))
+				.Select(s => HumbleSegment.CreateFromString(s));
 
-			return new HumbleSegment();
+
+			return segmentsToSpawn;
 		}
 
-		private void Start() {
-			PopulateSegments();
-			TrainMarkov();
-		}
 
-		[Button]
-		public void PopulateSegments() {
+		private void PopulateSegments() {
 			string[] assetNames = AssetDatabase.FindAssets("t: SegmentAsset", new[] {"Assets/ScriptableObjects"});
 			if (markovSegments != null) {
 				markovSegments.Clear();

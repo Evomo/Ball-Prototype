@@ -1,5 +1,6 @@
 namespace Level.Interfaces {
-	public interface ILevelEncodable {
+	public interface ILevelEncodable<T> {
 		string Encode2String();
+		T FromString(string s);
 	}
 }

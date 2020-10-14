@@ -1,18 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Level.Components;
 using Level.Interfaces;
+using UnityEngine;
 using Util;
 
 namespace Level.Data {
 	[Serializable]
-	public class HumbleSegment : ILevelEncodable {
+	public class HumbleSegment : ILevelEncodable<HumbleSegment> {
 		public HumbleWall North, South, East, West;
 
 
 		private Dictionary<TunnelDirection, int> _previousPathWeights;
 
+		public static HumbleSegment CreateFromString(string s) {
+			return new HumbleSegment().FromString(s);
+		}
+
 		public HumbleSegment() {
+			North = new HumbleWall();
+			South = new HumbleWall();
+			East = new HumbleWall();
+			West = new HumbleWall();
 			_previousPathWeights = new Dictionary<TunnelDirection, int>();
 		}
 
@@ -43,12 +53,13 @@ namespace Level.Data {
 			return wallList;
 		}
 
-		public void Init(ref Queue<Segment> backTrackSegments) {
-			_previousPathWeights.Clear();
-			foreach (Segment s in backTrackSegments) {
-				s.Walls.AddToWeights(ref _previousPathWeights);
-			}
-		}
+		// public void Init(ref Queue<Segment> backTrackSegments) {
+		// 	_previousPathWeights.Clear();
+		// 	foreach (Segment s in backTrackSegments) {
+		// 		s.Walls.AddToWeights(ref _previousPathWeights);
+		// 	}
+		// }
+
 
 		private void AddToWeights(ref Dictionary<TunnelDirection, int> previousPathWeights) {
 			foreach (TunnelDirection p in Enum.GetValues(typeof(TunnelDirection))) {
@@ -65,5 +76,20 @@ namespace Level.Data {
 		public string Encode2String() {
 			return $"{North.Encode2String()}-{South.Encode2String()}-{East.Encode2String()}-{West.Encode2String()}";
 		}
+
+
+		public HumbleSegment FromString(string s) {
+
+			string[] splits = Regex.Split(s, "-");
+			for (int i = 0; i < splits.Length; i++) {
+				GetWall((TunnelDirection) i).FromString(splits[i]);
+			}
+
+			return this;
+		}
+
+		// public void Init(HumbleSegment walls) {
+		// 	throw new NotImplementedException();
+		// }
 	}
 }

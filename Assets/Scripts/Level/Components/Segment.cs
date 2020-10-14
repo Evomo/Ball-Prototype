@@ -13,9 +13,7 @@ namespace Level.Components {
 
 		public Segment previous, next;
 
-		public void Init(ref Queue<Segment> backTrackSegments) {
-			Walls.Init(ref backTrackSegments);
-		}
+
 
 		public void ConnectSegmentTo(Segment s) {
 			Transform segmentTrans = s.transform;

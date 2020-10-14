@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Level.Data {
 	[CreateAssetMenu(menuName = "Slime/Segment Data")]
-	public class SegmentAsset : ScriptableObject, ILevelEncodable {
+	public class SegmentAsset : ScriptableObject {
 		public List<HumbleSegment> humbleSegments;
 
 
