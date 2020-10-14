@@ -1,5 +1,5 @@
 namespace Util {
-	public enum TunnelDirections {
+	public enum TunnelDirection {
 		NORTH,
 		SOUTH,
 		EAST,
