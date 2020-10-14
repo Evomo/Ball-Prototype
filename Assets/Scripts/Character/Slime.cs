@@ -107,7 +107,7 @@ namespace Character {
 
 			float error = CenterError(ref _errorDrift) ;
 			if (error > driftMargin) {
-				_moveVector += _errorDrift * (gravMultiplier * error);
+				_moveVector += _errorDrift * (gravMultiplier );
 			}
 
 

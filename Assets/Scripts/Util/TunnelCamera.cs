@@ -8,34 +8,27 @@ namespace Util {
 
 		private float _oldFieldOfView;
 		private Vector3 _oldPosition;
-		[SerializeField] private Camera cam;
+		private Camera _cam;
+
+		private Vector3 startDiff;
 
 		void Start() {
-			cam = GetComponent<Camera>();
+			_cam = GetComponent<Camera>();
 			slime = FindObjectOfType<Slime>();
+			startDiff = slime.transform.position - transform.position;
 		}
 
 
-		// Update is called once per frame
-		// void Update() {
-		// 	_oldPosition = new Vector2(transform.position.x, transform.position.y);
-		// 	// Vector3 screenMidPoint = slime.currentSegment.next.next.transform.position;
-		// 	Vector3 pos = screenMidPoint + (slime.transform.position - screenMidPoint) / 2.0f;
-		//
-		//
-		// 	pos = _oldPosition + (pos - _oldPosition) * 0.2f;
-		// 	// transform.position = new Vector3(pos.x, pos.y, transform.position.z);
-		//
-		// 	transform.LookAt(new Vector3(screenMidPoint.x, screenMidPoint.y, 2000));
-		//
-		// 	if (slime.controller.isGrounded) {
-		// 		cam.fieldOfView = 90 + (_oldFieldOfView - 90) * 0.9f;
-		// 		_oldFieldOfView = cam.fieldOfView;
+		void Update() {
+			transform.position = slime.transform.position - startDiff;
+		// 	if (slime.IsGrounded) {
+		// 		_cam.fieldOfView = 90 + (_oldFieldOfView - 90) * 0.9f;
+		// 		_oldFieldOfView = _cam.fieldOfView;
 		// 	}
 		// 	else {
-		// 		cam.fieldOfView = 95 + (_oldFieldOfView - 95) * 0.9f;
-		// 		_oldFieldOfView = cam.fieldOfView;
+		// 		_cam.fieldOfView = 95 + (_oldFieldOfView - 95) * 0.9f;
+		// 		_oldFieldOfView = _cam.fieldOfView;
 		// 	}
-		// }
+		}
 	}
 }

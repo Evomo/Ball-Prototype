@@ -53,25 +53,6 @@ namespace Level.Data {
 			return wallList;
 		}
 
-		// public void Init(ref Queue<Segment> backTrackSegments) {
-		// 	_previousPathWeights.Clear();
-		// 	foreach (Segment s in backTrackSegments) {
-		// 		s.Walls.AddToWeights(ref _previousPathWeights);
-		// 	}
-		// }
-
-
-		private void AddToWeights(ref Dictionary<TunnelDirection, int> previousPathWeights) {
-			foreach (TunnelDirection p in Enum.GetValues(typeof(TunnelDirection))) {
-				HumbleWall currHumbleWall = GetWall(p);
-
-				if (currHumbleWall != null && currHumbleWall.wallType == WallType.BOOST) {
-					int amount;
-					previousPathWeights.TryGetValue(p, out amount);
-					previousPathWeights[p] = amount + 1;
-				}
-			}
-		}
 
 		public string Encode2String() {
 			return $"{North.Encode2String()}-{South.Encode2String()}-{East.Encode2String()}-{West.Encode2String()}";
@@ -88,8 +69,5 @@ namespace Level.Data {
 			return this;
 		}
 
-		// public void Init(HumbleSegment walls) {
-		// 	throw new NotImplementedException();
-		// }
 	}
 }

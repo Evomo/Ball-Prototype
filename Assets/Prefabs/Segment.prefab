@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8324150848400434430
 Transform:
   m_ObjectHideFlags: 0
@@ -305,19 +305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f14595b7297aeb4db62fa3cf5640155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Walls:
-    North:
-      wallType: 0
-    South:
-      wallType: 0
-    East:
-      wallType: 0
-    West:
-      wallType: 0
   start: {fileID: 1660041661547486670}
   end: {fileID: 331237781859064884}
   previous: {fileID: 0}
   next: {fileID: 0}
+  walls:
+    North: {fileID: 4671197659922329150}
+    East: {fileID: 3916784194547752740}
+    South: {fileID: 6969148956856080827}
+    West: {fileID: 3226910107033115063}
 --- !u!65 &8370030387144315501
 BoxCollider:
   m_ObjectHideFlags: 0

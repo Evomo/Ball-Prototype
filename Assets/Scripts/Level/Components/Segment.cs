@@ -1,19 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Character;
 using Level.Data;
 using UnityEngine;
 using Util;
+using Util.Pool;
 
 namespace Level.Components {
+	[Serializable]
+	public class WallManager {
+		public Wall North, East, South, West;
+	}
+
 	public class Segment : MonoBehaviour {
-		[SerializeField] public HumbleSegment Walls;
+		private HumbleSegment _humbleSegment;
 
 
 		public Transform start, end;
 
 		public Segment previous, next;
 
+		[SerializeField] public WallManager walls;
 
+
+
+		public void Init(HumbleSegment seg) {
+			walls.North.Init(seg.GetWall(TunnelDirection.NORTH));
+			walls.South.Init(seg.GetWall(TunnelDirection.SOUTH));
+			walls.East.Init(seg.GetWall(TunnelDirection.EAST));
+			walls.West.Init(seg.GetWall(TunnelDirection.WEST));
+		}
 
 		public void ConnectSegmentTo(Segment s) {
 			Transform segmentTrans = s.transform;
@@ -24,40 +40,20 @@ namespace Level.Components {
 			s.previous = this;
 		}
 
-		public static Segment Spawn(GameObject segmentPrefab, Segment lastSegment) {
-			Segment s = SimplePool.Spawn(segmentPrefab, Vector3.zero, Quaternion.identity)
-				.GetComponent<Segment>();
-
-			if (lastSegment != null) {
-				lastSegment.ConnectSegmentTo(s);
-			}
-
-			return s;
-		}
 
 		private void OnTriggerEnter(Collider other) {
 			Slime slime = other.gameObject.GetComponent<Slime>();
 			if (slime != null) {
 				slime.CurrentSegment = this;
+				RecyclePrevious();
 			}
 		}
 
 
 		public void RecyclePrevious() {
-			// if (previous != null) {
-			// 	int depth = 0;
-			//
-			// 	Segment curr = previous;
-			// 	while (curr.previous != null) {
-			// 		curr = curr.previous;
-			// 		depth++;
-			// 	}
-			//
-			// 	if (depth >= 3) {
-			// 		SimplePool.Despawn(curr.gameObject);
-			// 		LevelGenerator.Instance.NextSegment();
-			// 	}
-			// }
+			if (previous != null) {
+				LevelGenerator.Instance.RecycleItem(previous);
+			}
 		}
 	}
 }

@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 1087520820}
   - component: {fileID: 1087520821}
   - component: {fileID: 1087520822}
+  - component: {fileID: 1087520823}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -505,11 +506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbd39943b183b241be3dca4cb1c13c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentPrefab: {fileID: 3687419642464922015, guid: 51695e9c899387d46b6a45e625c3a9f1,
-    type: 3}
-  currentSegment: {fileID: 1676773831}
-  path: {fileID: 0}
-  backTrackCount: 1
+  segmentComponent: {fileID: 322444547, guid: 51695e9c899387d46b6a45e625c3a9f1, type: 3}
+  markov: {fileID: 1087520822}
 --- !u!114 &1087520822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +524,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 289685cea330d3c4d9383b6b4d705a2d, type: 2}
   - {fileID: 11400000, guid: 8499114b234c042419de367b5ce8c6c7, type: 2}
   - {fileID: 11400000, guid: ee4afbd7e85df154294681af576b56c6, type: 2}
+--- !u!114 &1087520823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087520819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430d968e63581624e84fc43c08982663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logStatus: 1
+  root: {fileID: 0}
 --- !u!1 &1573259036
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +780,12 @@ PrefabInstance:
     - target: {fileID: 3687419642464922015, guid: 51695e9c899387d46b6a45e625c3a9f1,
         type: 3}
       propertyPath: m_Name
-      value: Segment
+      value: FirstSegment
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687419642464922015, guid: 51695e9c899387d46b6a45e625c3a9f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8324150848400434430, guid: 51695e9c899387d46b6a45e625c3a9f1,
         type: 3}
@@ -827,15 +844,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51695e9c899387d46b6a45e625c3a9f1, type: 3}
---- !u!114 &1676773831 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 322444547, guid: 51695e9c899387d46b6a45e625c3a9f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1582844732}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f14595b7297aeb4db62fa3cf5640155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
