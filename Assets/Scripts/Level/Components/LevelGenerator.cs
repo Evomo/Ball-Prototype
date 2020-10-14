@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Level.Data;
+﻿using System.Collections.Generic;
 using MotionAI.Core.Util;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Level {
+namespace Level.Components {
 	[RequireComponent(typeof(PathGenerator))]
 	public class LevelGenerator : Singleton<LevelGenerator> {
 		public GameObject segmentPrefab;

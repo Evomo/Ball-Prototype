@@ -471,6 +471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087520820}
   - component: {fileID: 1087520821}
+  - component: {fileID: 1087520822}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -509,6 +510,22 @@ MonoBehaviour:
   currentSegment: {fileID: 1676773831}
   path: {fileID: 0}
   backTrackCount: 1
+--- !u!114 &1087520822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087520819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7145d3b2ab324383941959d0ea49ba89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  markovSegments:
+  - {fileID: 11400000, guid: 289685cea330d3c4d9383b6b4d705a2d, type: 2}
+  - {fileID: 11400000, guid: 8499114b234c042419de367b5ce8c6c7, type: 2}
+  - {fileID: 11400000, guid: ee4afbd7e85df154294681af576b56c6, type: 2}
 --- !u!1 &1573259036
 GameObject:
   m_ObjectHideFlags: 0

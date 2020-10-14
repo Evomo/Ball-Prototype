@@ -1,9 +1,12 @@
 // This model will use a phrase type of string, and also token type of string.
 
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using MarkovSharp;
 
 namespace Level.MarkovModels {
+	[Serializable]
 	public class StringMarkov : GenericMarkov<string, string> {
 		public StringMarkov(int level = 2)
 			: base(level) { }
@@ -14,7 +17,7 @@ namespace Level.MarkovModels {
 				return new List<string>() {GetPrepadUnigram()};
 			}
 
-			return input?.Split(' ');
+			return Regex.Split(input, " ");
 		}
 
 		// Define how to join the generated tokens back to a phrase

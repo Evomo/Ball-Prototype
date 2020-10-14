@@ -13,16 +13,17 @@ namespace Character {
 
 		private Slime slime;
 
-		void Start() {
+		public override void Start() {
+			base.Start();
 			slime = GetComponent<Slime>();
 
-			jump.AddListener(elmo => ChangeSlimeDirection(TunnelDirections.NORTH));
-			duck.AddListener(elmo => ChangeSlimeDirection(TunnelDirections.SOUTH));
-			left.AddListener(elmo => ChangeSlimeDirection(TunnelDirections.WEST));
-			right.AddListener(elmo => ChangeSlimeDirection(TunnelDirections.EAST));
+			jump.AddListener(elmo => ChangeSlimeDirection(TunnelDirection.NORTH));
+			duck.AddListener(elmo => ChangeSlimeDirection(TunnelDirection.SOUTH));
+			left.AddListener(elmo => ChangeSlimeDirection(TunnelDirection.WEST));
+			right.AddListener(elmo => ChangeSlimeDirection(TunnelDirection.EAST));
 		}
 
-		private void ChangeSlimeDirection(TunnelDirections s) {
+		private void ChangeSlimeDirection(TunnelDirection s) {
 			if (slime.IsGrounded) {
 				slime.currGravityDirection = s;
 			}

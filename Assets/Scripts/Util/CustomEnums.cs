@@ -5,4 +5,8 @@ namespace Util {
 		EAST,
 		WEST
 	}
+	public enum WallType {
+		NORMAL,
+		BOOST
+	}
 }

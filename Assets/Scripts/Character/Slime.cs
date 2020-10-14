@@ -1,4 +1,5 @@
 using Level;
+using Level.Components;
 using UnityEngine;
 using Util;
 using Vector3 = UnityEngine.Vector3;
@@ -19,7 +20,7 @@ namespace Character {
 		private Vector3 Direction =>
 			Vector3.right; //(_currentSegment.next.transform.position - transform.position).normalized;
 
-		public TunnelDirections currGravityDirection;
+		public TunnelDirection currGravityDirection;
 		private RaycastHit _rightHit, _leftHit;
 
 		public Segment CurrentSegment {
@@ -45,16 +46,16 @@ namespace Character {
 
 		private Vector3 GravityVector() {
 			switch (currGravityDirection) {
-				case TunnelDirections.NORTH:
+				case TunnelDirection.NORTH:
 					_gravityVec = Vector3.up;
 					break;
-				case TunnelDirections.SOUTH:
+				case TunnelDirection.SOUTH:
 					_gravityVec = Vector3.down;
 					break;
-				case TunnelDirections.EAST:
+				case TunnelDirection.EAST:
 					_gravityVec = Vector3.back;
 					break;
-				case TunnelDirections.WEST:
+				case TunnelDirection.WEST:
 					_gravityVec = Vector3.forward;
 					break;
 				default:

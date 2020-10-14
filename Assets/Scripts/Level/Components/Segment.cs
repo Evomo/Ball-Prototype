@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Character;
 using Level.Data;
 using UnityEngine;
 using Util;
 
-namespace Level {
+namespace Level.Components {
 	public class Segment : MonoBehaviour {
-		[SerializeField] public WallManager Walls;
+		[SerializeField] public HumbleSegment Walls;
 
 
 		public Transform start, end;
