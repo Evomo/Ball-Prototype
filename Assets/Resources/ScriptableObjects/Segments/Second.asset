@@ -10,46 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a792479f15641a2bc94a1df85e55fcd, type: 3}
-  m_Name: Test
+  m_Name: Second
   m_EditorClassIdentifier: 
   humbleSegments:
   - North:
       wallType: 0
+      collectableAsset: {fileID: 11400000, guid: 4b1b695897e2b2144bb424682a7173d0,
+        type: 2}
     South:
       wallType: 0
+      collectableAsset: {fileID: 0}
     East:
       wallType: 0
+      collectableAsset: {fileID: 11400000, guid: 4b1b695897e2b2144bb424682a7173d0,
+        type: 2}
     West:
       wallType: 0
-  - North:
-      wallType: 0
-    South:
-      wallType: 0
-    East:
-      wallType: 0
-    West:
-      wallType: 0
-  - North:
-      wallType: 0
-    South:
-      wallType: 0
-    East:
-      wallType: 0
-    West:
-      wallType: 0
-  - North:
-      wallType: 0
-    South:
-      wallType: 0
-    East:
-      wallType: 0
-    West:
-      wallType: 0
-  - North:
-      wallType: 0
-    South:
-      wallType: 0
-    East:
-      wallType: 0
-    West:
-      wallType: 0
+      collectableAsset: {fileID: 0}

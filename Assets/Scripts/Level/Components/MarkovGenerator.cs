@@ -59,7 +59,6 @@ namespace Level.Components {
 
 
 		private void PopulateSegments() {
-			string[] assetNames = AssetDatabase.FindAssets("t: SegmentAsset", new[] {"Assets/ScriptableObjects"});
 			if (markovSegments != null) {
 				markovSegments.Clear();
 			}
@@ -67,9 +66,8 @@ namespace Level.Components {
 				markovSegments = new List<SegmentAsset>();
 			}
 
-			foreach (string SOName in assetNames) {
-				var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
-				SegmentAsset seg = AssetDatabase.LoadAssetAtPath<SegmentAsset>(SOpath);
+
+			foreach (SegmentAsset seg in Resources.FindObjectsOfTypeAll<SegmentAsset>()) {
 				markovSegments.Add(seg);
 			}
 		}

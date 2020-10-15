@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Level.Interfaces;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -10,6 +10,16 @@ namespace Level.Data {
 		public List<HumbleSegment> humbleSegments;
 
 
+		[Button()]
+		private void TestEncoding() {
+			Debug.Log(Encode2String());
+		}
+
+		[Button()]
+		private void TestDecoding() {
+			HumbleSegment seg = humbleSegments.First();
+			seg.FromString(seg.Encode2String());
+		}
 		public string Encode2String() {
 			List<string> segments = new List<string>();
 			foreach (HumbleSegment currSegment in humbleSegments) {

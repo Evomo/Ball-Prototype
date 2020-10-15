@@ -23,12 +23,11 @@ namespace Level.Components {
 		[SerializeField] public WallManager walls;
 
 
-
 		public void Init(HumbleSegment seg) {
-			walls.North.Init(seg.GetWall(TunnelDirection.NORTH));
-			walls.South.Init(seg.GetWall(TunnelDirection.SOUTH));
-			walls.East.Init(seg.GetWall(TunnelDirection.EAST));
-			walls.West.Init(seg.GetWall(TunnelDirection.WEST));
+			walls.North.Init(seg.GetWall(TunnelDirection.NORTH), TunnelDirection.NORTH);
+			walls.South.Init(seg.GetWall(TunnelDirection.SOUTH), TunnelDirection.SOUTH);
+			walls.East.Init(seg.GetWall(TunnelDirection.EAST), TunnelDirection.EAST);
+			walls.West.Init(seg.GetWall(TunnelDirection.WEST), TunnelDirection.WEST);
 		}
 
 		public void ConnectSegmentTo(Segment s) {
@@ -41,14 +40,30 @@ namespace Level.Components {
 		}
 
 
+		public Wall GetWall(TunnelDirection pos) {
+			switch (pos) {
+				case TunnelDirection.NORTH:
+					return walls.North;
+				case TunnelDirection.EAST:
+					return walls.East;
+				case TunnelDirection.SOUTH:
+					return walls.South;
+				case TunnelDirection.WEST:
+					return walls.West;
+				default:
+					return null;
+			}
+		}
+
 		private void OnTriggerEnter(Collider other) {
 			Slime slime = other.gameObject.GetComponent<Slime>();
 			if (slime != null) {
 				slime.CurrentSegment = this;
+				GetWall(slime.currGravityDirection).RedeemCollectable();
+
 				RecyclePrevious();
 			}
 		}
-
 
 		public void RecyclePrevious() {
 			if (previous != null) {

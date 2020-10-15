@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a792479f15641a2bc94a1df85e55fcd, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: dd410b0d2a0c464c828b67f8f248b11a, type: 3}
+  m_Name: Basic Coin
   m_EditorClassIdentifier: 
-  walls: []
+  collectable: {fileID: 1110730493945563842, guid: f814214b93bc95d448f2ab6617f767af,
+    type: 3}
+  value: 1

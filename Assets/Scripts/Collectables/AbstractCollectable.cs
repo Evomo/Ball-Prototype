@@ -1,11 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using Character;
+using UnityEngine;
+using Util.Pool;
 
 namespace Collectables {
-	public class AbstractCollectable : MonoBehaviour {
-		// Start is called before the first frame update
-		void Start() { }
+	public abstract class AbstractCollectable : MonoBehaviour {
+		public abstract void ApplyCollectable();
 
-		// Update is called once per frame
-		void Update() { }
+
+		public float value;
+
+		public void Init(CollectableAsset hc) {
+			value = hc.collectableValue;
+		}
+
+		public void Update() {
+			transform.Rotate(Vector3.up, 2);
+		}
+
+
 	}
 }

@@ -14,9 +14,9 @@ namespace Level.Components {
 		public Segment segmentComponent;
 
 
-		[SerializeField] private Segment _currentSegment;
+		[SerializeField] private Segment currentSegment;
 
-		[SerializeField, Range(4, 20)] private int RecycleThreshold;
+		[SerializeField, Range(4, 20)] private int recycleThreshold;
 		public MarkovGenerator markov;
 		private Queue<Segment> _toRecycle;
 
@@ -40,7 +40,7 @@ namespace Level.Components {
 
 
 			BuildNextSegmentPhrase();
-			while (_toRecycle.Count > RecycleThreshold) {
+			while (_toRecycle.Count > recycleThreshold) {
 				Segment recycled = _toRecycle.Dequeue();
 				PoolManager.ReleaseObject(recycled.gameObject);
 			}
@@ -49,19 +49,25 @@ namespace Level.Components {
 		private void SpawnFromHumble(HumbleSegment nextHumble) {
 			if (PoolManager.AmountActive(segmentComponent.gameObject, false) > 1) {
 				Segment s = PoolManager.SpawnObject(segmentComponent.gameObject).GetComponent<Segment>();
-				if (_currentSegment != null) {
-					_currentSegment.ConnectSegmentTo(s);
+				if (currentSegment != null) {
+					currentSegment.ConnectSegmentTo(s);
 				}
 
 
 				s.Init(nextHumble);
-				_currentSegment = s;
+				currentSegment = s;
 			}
 		}
 
 		private void BuildNextSegmentPhrase() {
-			if (_segmentQueue == null || _segmentQueue.Count == 0) {
-				_segmentQueue = new Queue<HumbleSegment>(markov.NextSegmentGenerator());
+			if (_segmentQueue == null) {
+				_segmentQueue = new Queue<HumbleSegment>();
+			}
+
+			if (_segmentQueue.Count == 0) {
+				foreach (HumbleSegment segment in markov.NextSegmentGenerator()) {
+					_segmentQueue.Enqueue(segment);
+				}
 			}
 
 			HumbleSegment s = _segmentQueue.Dequeue();

@@ -15,17 +15,25 @@ MonoBehaviour:
   humbleSegments:
   - North:
       wallType: 1
+      collectableAsset: {fileID: 0}
     South:
       wallType: 0
+      collectableAsset: {fileID: 0}
     East:
       wallType: 0
+      collectableAsset: {fileID: 0}
     West:
       wallType: 0
+      collectableAsset: {fileID: 0}
   - North:
       wallType: 0
+      collectableAsset: {fileID: 0}
     South:
       wallType: 1
+      collectableAsset: {fileID: 0}
     East:
       wallType: 0
+      collectableAsset: {fileID: 0}
     West:
       wallType: 0
+      collectableAsset: {fileID: 0}
