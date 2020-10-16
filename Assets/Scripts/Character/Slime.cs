@@ -47,12 +47,9 @@ namespace Character {
 
 		private void Update() {
 			MovementCorrection();
+			ShowDebugVectors();
 			controller.Move(Direction * (Time.deltaTime * speed));
-			Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, GravityVector() * 10),
-				Color.red);
-			Debug.DrawLine(transform.position,
-				transform.position + -Vector3.Cross(Vector3.right, GravityVector()) * 10,
-				Color.blue);
+
 		}
 
 

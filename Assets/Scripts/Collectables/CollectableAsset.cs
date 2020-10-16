@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 using Util;
 
@@ -6,7 +7,7 @@ namespace Collectables {
 	public class CollectableAsset : ScriptableObject {
 		public AbstractCollectable collectable;
 
-		[Min(1)] public float collectableValue;
+		[Range(1,10)] public float collectableValue;
 		
 		
 	}

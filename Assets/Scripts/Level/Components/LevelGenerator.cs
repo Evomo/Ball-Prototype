@@ -37,11 +37,14 @@ namespace Level.Components {
 
 		public void RecycleItem(Segment s) {
 			_toRecycle.Enqueue(s);
-
+			
 
 			BuildNextSegmentPhrase();
 			while (_toRecycle.Count > recycleThreshold) {
 				Segment recycled = _toRecycle.Dequeue();
+				foreach (TunnelDirection dir in EnumUtils.GetValues<TunnelDirection>()) {
+					recycled.previous.GetWall(dir).Recycle();
+				}
 				PoolManager.ReleaseObject(recycled.gameObject);
 			}
 		}

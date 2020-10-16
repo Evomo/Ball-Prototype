@@ -17,6 +17,14 @@ namespace Character {
 		protected float CurrentDriftError => CenterError(out ErrorDrift);
 		protected bool DriftPassesThreshold => CurrentDriftError > driftCorrectionThreshold;
 
+		protected void ShowDebugVectors() {
+			Debug.DrawLine(transform.position, transform.position + Vector3.Cross(Vector3.right, GravityVector() * 10),
+				Color.red);
+			Debug.DrawLine(transform.position,
+				transform.position + -Vector3.Cross(Vector3.right, GravityVector()) * 10,
+				Color.blue);
+		}
+
 		protected Vector3 GravityVector() {
 			switch (currGravityDirection) {
 				case TunnelDirection.NORTH:
