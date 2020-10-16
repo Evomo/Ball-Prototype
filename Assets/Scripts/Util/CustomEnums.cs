@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Util {
 	public enum TunnelDirection {
@@ -25,6 +26,20 @@ namespace Util {
 			return Enum.GetValues(typeof(T)).Cast<T>();
 		}
 
+		public static Vector3 Vector(TunnelDirection d) {
+			switch (d) {
+				case TunnelDirection.NORTH:
+					return Vector3.up;
+				case TunnelDirection.SOUTH:
+					return Vector3.down;
+				case TunnelDirection.EAST:
+					return Vector3.back;
+				case TunnelDirection.WEST:
+					return Vector3.forward;
+				default:
+					return Vector3.up;
+			}
+		}
 
 		public static TunnelDirection Perpendicular(TunnelDirection d, bool ccw = true) {
 			d = ccw ? d : Opposite(d);

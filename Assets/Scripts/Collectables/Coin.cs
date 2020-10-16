@@ -17,7 +17,7 @@ namespace Collectables {
 			ParticleSystem ps = GetComponent<ParticleSystem>();
 			ParticleSystem.EmissionModule emissionModule = ps.emission;
 
-			emissionModule.SetBurst(0, new ParticleSystem.Burst(0, _count: (short) hc.collectableValue));
+			emissionModule.SetBurst(0, new ParticleSystem.Burst(0, _count: (short) hc.collectableValue * 5));
 		}
 	}
 }

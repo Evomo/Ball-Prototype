@@ -14,10 +14,9 @@ namespace Level.Data {
 		public static string matchPattern = @"([^\)|^\(]+)";
 
 		private Regex _regx = new Regex(matchPattern);
-		private Dictionary<TunnelDirection, int> _previousPathWeights;
 
 		public static HumbleSegment CreateFromString(string s) {
-			return new HumbleSegment().FromString(s);
+			return new HumbleSegment().InitFromString(s);
 		}
 
 		public HumbleSegment() {
@@ -25,7 +24,6 @@ namespace Level.Data {
 			South = new HumbleWall();
 			East = new HumbleWall();
 			West = new HumbleWall();
-			_previousPathWeights = new Dictionary<TunnelDirection, int>();
 		}
 
 		public HumbleWall GetWall(TunnelDirection pos) {
@@ -49,11 +47,11 @@ namespace Level.Data {
 		}
 
 
-		public HumbleSegment FromString(string s) {
+		public HumbleSegment InitFromString(string s) {
 			MatchCollection splits = _regx.Matches(s);
 			int wallIt = 0;
 			foreach (Match split in splits) {
-				GetWall((TunnelDirection) wallIt).FromString(split.Value);
+				GetWall((TunnelDirection) wallIt).InitFromString(split.Value);
 				wallIt++;
 			}
 

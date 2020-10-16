@@ -56,8 +56,8 @@ namespace Level.Components {
 					currentSegment.ConnectSegmentTo(s);
 				}
 
-
 				s.Init(nextHumble);
+
 				currentSegment = s;
 			}
 		}

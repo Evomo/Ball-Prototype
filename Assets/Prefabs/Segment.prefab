@@ -79,11 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 377640616045123103}
   currType: 0
-  direction: 0
+  direction: 1
   data:
     wallType: 0
     collectableAsset: {fileID: 0}
-  collectablePosition: {fileID: 0}
+  _collectable: {fileID: 0}
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &325811593937176463
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 5510087491452820468}
   - component: {fileID: 1628376355218119347}
   m_Layer: 0
-  m_Name: West
+  m_Name: East
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,11 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5510087491452820468}
   currType: 0
-  direction: 0
+  direction: 2
   data:
     wallType: 0
     collectableAsset: {fileID: 0}
-  collectablePosition: {fileID: 3870396440804055074}
+  _collectable: {fileID: 0}
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &3923518624885919396
@@ -351,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 3687419642464922015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.5, z: 0.75}
   m_Children:
   - {fileID: 8280671273267436369}
   - {fileID: 1247947837605834054}
@@ -373,15 +373,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f14595b7297aeb4db62fa3cf5640155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walls:
+    North: {fileID: 4671197659922329150}
+    East: {fileID: 3226910107033115063}
+    South: {fileID: 6969148956856080827}
+    West: {fileID: 3916784194547752740}
   start: {fileID: 1660041661547486670}
   end: {fileID: 331237781859064884}
   previous: {fileID: 0}
   next: {fileID: 0}
-  walls:
-    North: {fileID: 4671197659922329150}
-    East: {fileID: 3916784194547752740}
-    South: {fileID: 6969148956856080827}
-    West: {fileID: 3226910107033115063}
 --- !u!65 &8370030387144315501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   data:
     wallType: 0
     collectableAsset: {fileID: 0}
-  collectablePosition: {fileID: 5685670656396586370}
+  _collectable: {fileID: 0}
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &7398955894292309396
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 5161783705397561836}
   - component: {fileID: 6537007635484277047}
   m_Layer: 0
-  m_Name: East
+  m_Name: West
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,7 +661,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511157726883137001}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
@@ -683,11 +683,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5161783705397561836}
   currType: 0
-  direction: 0
+  direction: 3
   data:
     wallType: 0
     collectableAsset: {fileID: 0}
-  collectablePosition: {fileID: 0}
+  _collectable: {fileID: 0}
   standardMaterial: {fileID: 2100000, guid: 7785ef7607533494fad97e14e17bb185, type: 2}
   boostMaterial: {fileID: 2100000, guid: dd5165a69db3d6a429d9ab7fadc35c7c, type: 2}
 --- !u!33 &111338947473837179

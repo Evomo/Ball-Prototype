@@ -18,7 +18,7 @@ namespace Level.Data {
 		[Button()]
 		private void TestDecoding() {
 			HumbleSegment seg = humbleSegments.First();
-			seg.FromString(seg.Encode2String());
+			seg.InitFromString(seg.Encode2String());
 		}
 		public string Encode2String() {
 			List<string> segments = new List<string>();

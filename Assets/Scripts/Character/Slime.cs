@@ -29,7 +29,7 @@ namespace Character {
 		public bool IsGrounded {
 			get {
 				RaycastHit hit;
-				if (Physics.Raycast(transform.position, GravityVector(), out hit, Mathf.Infinity)) {
+				if (Physics.Raycast(transform.position, GravityVector, out hit, Mathf.Infinity)) {
 					if (hit.distance < minStickDistance) {
 						return true;
 					}
@@ -48,15 +48,15 @@ namespace Character {
 		private void Update() {
 			MovementCorrection();
 			ShowDebugVectors();
-			controller.Move(Direction * (Time.deltaTime * speed));
 
+			controller.Move(Direction * (Time.deltaTime * speed));
 		}
 
 
 		private void MovementCorrection() {
 			_moveVector = Vector3.zero;
 			if (!IsGrounded) {
-				_moveVector += GravityVector();
+				_moveVector += GravityVector ;
 			}
 
 			if (DriftPassesThreshold) {
@@ -64,7 +64,7 @@ namespace Character {
 			}
 
 			Debug.DrawLine(transform.position, transform.position + ErrorDrift, Color.magenta);
-			Debug.DrawLine(transform.position, transform.position + GravityVector() * 10, Color.green);
+			Debug.DrawLine(transform.position, transform.position + GravityVector * 10, Color.green);
 			controller.Move(_moveVector.normalized * (speed * Time.deltaTime));
 		}
 	}

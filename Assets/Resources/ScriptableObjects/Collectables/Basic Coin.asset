@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectable: {fileID: 1110730493945563842, guid: f814214b93bc95d448f2ab6617f767af,
     type: 3}
-  value: 1
+  collectableValue: 3.61

@@ -22,7 +22,7 @@ namespace Level.Data {
 		}
 
 
-		public HumbleWall FromString(string s) {
+		public HumbleWall InitFromString(string s) {
 			string[] tokens = Regex.Split(s, "<");
 			wallType = (WallType) Enum.Parse(typeof(WallType), tokens.First());
 			int hash;

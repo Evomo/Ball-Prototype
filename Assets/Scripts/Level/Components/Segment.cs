@@ -13,6 +13,7 @@ namespace Level.Components {
 	}
 
 	public class Segment : MonoBehaviour {
+		[SerializeField] private WallManager walls;
 		private HumbleSegment _humbleSegment;
 
 
@@ -20,20 +21,17 @@ namespace Level.Components {
 
 		public Segment previous, next;
 
-		[SerializeField] public WallManager walls;
-
 
 		public void Init(HumbleSegment seg) {
-			walls.North.Init(seg.GetWall(TunnelDirection.NORTH), TunnelDirection.NORTH);
-			walls.South.Init(seg.GetWall(TunnelDirection.SOUTH), TunnelDirection.SOUTH);
-			walls.East.Init(seg.GetWall(TunnelDirection.EAST), TunnelDirection.EAST);
-			walls.West.Init(seg.GetWall(TunnelDirection.WEST), TunnelDirection.WEST);
+			foreach (TunnelDirection dir in EnumUtils.GetValues<TunnelDirection>()) {
+				GetWall(dir).InitFromHumble(seg.GetWall(dir), dir);
+			}
 		}
 
 		public void ConnectSegmentTo(Segment s) {
-			Transform segmentTrans = s.transform;
-			Vector3 displacement = segmentTrans.position - s.start.position;
-			segmentTrans.position = end.position + displacement;
+			Transform nextTrans = s.transform;
+			Vector3 displacement = nextTrans.position - s.start.position;
+			nextTrans.position = end.position + displacement;
 
 			next = s;
 			s.previous = this;
@@ -59,9 +57,10 @@ namespace Level.Components {
 			Slime slime = other.gameObject.GetComponent<Slime>();
 			if (slime != null) {
 				slime.CurrentSegment = this;
-				GetWall(slime.currGravityDirection).RedeemCollectable();
-
 				RecyclePrevious();
+
+
+				GetWall(slime.currGravityDirection).ConsumeCollectable(slime);
 			}
 		}
 
