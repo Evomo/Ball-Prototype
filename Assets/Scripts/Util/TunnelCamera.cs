@@ -12,6 +12,8 @@ namespace Util {
 
 		private Vector3 _startDiff;
 
+		private Vector3 moveVec;
+
 		void Start() {
 			_cam = GetComponent<Camera>();
 			slime = FindObjectOfType<Slime>();
@@ -20,12 +22,16 @@ namespace Util {
 
 
 		void Update() {
-			currGravityDirection = EnumUtils.Opposite(slime.currGravityDirection);
-			transform.position = slime.transform.position - _startDiff;
-			// if (DriftPassesThreshold) {
-				// transform.position -= ErrorDrift;
-			// }
+			ShowDebugVectors();
+			currGravityDirection = EnumUtils.Perpendicular(slime.currGravityDirection);
+			moveVec = slime.transform.position - _startDiff;
+			if (DriftPassesThreshold) {
+				moveVec += ErrorDrift;
+			}
 
+			transform.position = Vector3.Lerp(transform.position, moveVec, gravMultiplier * Time.deltaTime);
+
+			
 			if (slime.IsGrounded) {
 				_cam.fieldOfView = 90 + (_oldFieldOfView - 90) * 0.9f;
 				_oldFieldOfView = _cam.fieldOfView;
